@@ -4,10 +4,13 @@ import com.example.finance_tracker.constants.ApiPaths;
 import com.example.finance_tracker.dto.UserDTO;
 import com.example.finance_tracker.orchestration.OrchestrationInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+import java.util.Map;
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(ApiPaths.USERS)
 public class UserController {
@@ -42,5 +45,16 @@ public class UserController {
     @DeleteMapping(ApiPaths.USER_BY_ID)
     public void deleteUser(@PathVariable Long id) {
         orchestration.deleteUser(id);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody UserDTO userDTO) {
+        boolean valid = orchestration.validateUser(userDTO.getEmail(), userDTO.getPassword());
+        if(valid) {
+            // optionally generate JWT token
+            return ResponseEntity.ok(Map.of("message", "Login successful", "token", "dummy-jwt"));
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", "Invalid credentials"));
+        }
     }
 }

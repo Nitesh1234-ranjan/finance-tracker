@@ -33,4 +33,7 @@ public interface OrchestrationInterface {
     // Report methods
     Map<String, Object> getSummaryReport();
     Map<String, Object> getMonthlyReport(int month, int year);
+
+    boolean validateUser(String email, String password);
+
 }

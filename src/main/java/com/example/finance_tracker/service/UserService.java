@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService implements UserServiceInterface {
@@ -23,8 +24,8 @@ public class UserService implements UserServiceInterface {
     public UserDTO createUser(UserDTO userDTO) {
         User user = UserMapper.toEntity(userDTO);
 
-        if (user.getPassWord() != null) {
-            user.setPassword(passwordEncoder.encode(user.getPassWord()));
+        if (user.getPassword() != null) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
         user = userRepository.save(user);
         return UserMapper.toDTO(user);
@@ -53,5 +54,11 @@ public class UserService implements UserServiceInterface {
     @Override
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    public boolean validateUser(String email, String password) {
+        return userRepository.findByEmail(email)
+                .map(user -> user.getPassword().equals(password))
+                .orElse(false);
     }
 }

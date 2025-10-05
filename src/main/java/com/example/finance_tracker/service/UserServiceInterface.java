@@ -9,4 +9,5 @@ public interface UserServiceInterface {
     UserDTO getUserById(Long id);
     UserDTO updateUser(Long id, UserDTO userDTO);
     void deleteUser(Long id);
+    boolean validateUser(String email, String password);
 }

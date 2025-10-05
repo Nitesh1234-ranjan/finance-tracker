@@ -116,4 +116,9 @@ public class Orchestration implements OrchestrationInterface {
     public Map<String, Object> getMonthlyReport(int month, int year) {
         return reportService.getMonthlyReport(month, year);
     }
+
+    @Override
+    public boolean validateUser(String email, String password){
+        return userService.validateUser(email, password);
+    }
 }

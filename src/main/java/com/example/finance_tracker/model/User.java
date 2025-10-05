@@ -67,11 +67,13 @@ public class User {
         this.incomes = incomes;
     }
 
-    public String getPassWord() {
+    public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }
