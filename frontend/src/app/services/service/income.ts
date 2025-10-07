@@ -13,7 +13,7 @@ export interface Income {
 @Injectable({
   providedIn: 'root'
 })
-export class Income {
+export class IncomeService {
   private baseUrl = 'http://localhost:8080/incomes';
 
   constructor(private http: HttpClient) {}

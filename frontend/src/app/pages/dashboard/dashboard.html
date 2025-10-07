@@ -1,1 +1,108 @@
-<p>dashboard works!</p>
+<div class="dashboard-root p-6 bg-gray-50 min-h-screen space-y-8">
+  <div class="dashboard-header">
+    <h1>Welcome to Dashboard</h1>
+    <button (click)="logout()">Logout</button>
+  </div>
+
+  <!-- === Summary Cards === -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="bg-white shadow rounded-lg p-4 text-center">
+      <h2 class="text-lg font-semibold mb-2">Total Income</h2>
+      <p class="text-green-600 text-2xl font-bold">
+        ₹{{ summary?.totalIncome || 0 }}
+      </p>
+    </div>
+
+    <div class="bg-white shadow rounded-lg p-4 text-center">
+      <h2 class="text-lg font-semibold mb-2">Total Expense</h2>
+      <p class="text-red-600 text-2xl font-bold">
+        ₹{{ summary?.totalExpense || 0 }}
+      </p>
+    </div>
+
+    <div class="bg-white shadow rounded-lg p-4 text-center">
+      <h2 class="text-lg font-semibold mb-2">Balance</h2>
+      <p class="text-blue-600 text-2xl font-bold">
+        ₹{{ summary?.balance || 0 }}
+      </p>
+    </div>
+  </div>
+
+  <!-- === Monthly Report === -->
+  <div class="bg-white shadow rounded-lg p-4">
+    <h2 class="text-xl font-semibold mb-4">
+      📅 Monthly Report ({{ currentMonth }}/{{ currentYear }})
+    </h2>
+    <div *ngIf="monthly; else noMonthly">
+      <div class="flex justify-between">
+        <p><strong>Income:</strong> ₹{{ monthly.totalIncome }}</p>
+        <p><strong>Expense:</strong> ₹{{ monthly.totalExpense }}</p>
+        <p><strong>Balance:</strong> ₹{{ monthly.balance }}</p>
+      </div>
+    </div>
+    <ng-template #noMonthly>
+      <p class="text-gray-500">No monthly data available</p>
+    </ng-template>
+  </div>
+
+  <!-- === Recent Incomes === -->
+  <div class="bg-white shadow rounded-lg p-4">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-semibold">💰 Recent Incomes</h2>
+      <button class="bg-green-500 text-white px-3 py-1 rounded">+ Add</button>
+    </div>
+
+    <table class="w-full border-collapse">
+      <thead>
+      <tr class="bg-gray-100">
+        <th class="p-2 text-left">Source</th>
+        <th class="p-2 text-left">Amount</th>
+        <th class="p-2 text-left">Date</th>
+        <th class="p-2"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let income of incomes" class="border-b">
+        <td class="p-2">{{ income.source }}</td>
+        <td class="p-2">₹{{ income.amount }}</td>
+        <td class="p-2">{{ income.date }}</td>
+        <td class="p-2 text-right">
+          <button (click)="deleteIncome(income.id!)" class="text-red-600 hover:underline">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- === Recent Expenses === -->
+  <div class="bg-white shadow rounded-lg p-4">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-semibold">💸 Recent Expenses</h2>
+      <button class="bg-red-500 text-white px-3 py-1 rounded">+ Add</button>
+    </div>
+
+    <table class="w-full border-collapse">
+      <thead>
+      <tr class="bg-gray-100">
+        <th class="p-2 text-left">Category</th>
+        <th class="p-2 text-left">Amount</th>
+        <th class="p-2 text-left">Description</th>
+        <th class="p-2 text-left">Date</th>
+        <th class="p-2"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let expense of expenses" class="border-b">
+        <td class="p-2">{{ expense.category }}</td>
+        <td class="p-2">₹{{ expense.amount }}</td>
+        <td class="p-2">{{ expense.description }}</td>
+        <td class="p-2">{{ expense.date }}</td>
+        <td class="p-2 text-right">
+          <button (click)="deleteExpense(expense.id!)" class="text-red-600 hover:underline">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

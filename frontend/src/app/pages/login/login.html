@@ -12,7 +12,9 @@
       <input type="password" formControlName="password" placeholder="Enter password" />
     </div>
 
-    <button type="submit" [disabled]="loading">Login</button>
+    <button type="submit" [disabled]="loading || loginForm.invalid">
+      {{ loading ? 'Logging in...' : 'Login' }}
+    </button>
 
     <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
   </form>

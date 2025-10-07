@@ -11,7 +11,7 @@ export interface Report {
 @Injectable({
   providedIn: 'root'
 })
-export class Report {
+export class ReportService {
   private baseUrl = 'http://localhost:8080/reports';
 
   constructor(private http: HttpClient) {}
