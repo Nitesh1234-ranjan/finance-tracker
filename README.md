@@ -33,7 +33,7 @@ It allows users to track incomes and expenses, generate reports, and view a cons
 ## Application Setup Setup
 
 1. Build and run the backend:
-    mvn clean install
+    mvn clean install, 
     mvn spring-boot:run
 
 2. Frontend Setup (Angular)
