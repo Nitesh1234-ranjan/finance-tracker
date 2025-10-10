@@ -12,7 +12,7 @@ export interface Report {
   providedIn: 'root'
 })
 export class ReportService {
-  private baseUrl = 'http://localhost:8080/reports';
+  private baseUrl = 'http://http://52.66.200.200:8081/reports';
 
   constructor(private http: HttpClient) {}
 
