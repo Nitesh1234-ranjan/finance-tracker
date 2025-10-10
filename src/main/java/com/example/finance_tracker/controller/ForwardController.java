@@ -9,6 +9,6 @@ public class ForwardController {
     // Forward all routes except /api and static resources (JS, CSS, images) to Angular
     @GetMapping(value = "/{path:^(?!api$|.*\\..*$).*$}/**")
     public String forward() {
-        return "forward:/browser/login/index.html";
+        return "forward:index.html";
     }
 }
