@@ -13,7 +13,7 @@ export interface User {
   providedIn: 'root'
 })
 export class User {
-  private baseUrl = 'http://localhost:8080/users';
+  private baseUrl = 'http://http://52.66.200.200:8081/users';
 
   constructor(private http: HttpClient) {}
 
