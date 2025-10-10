@@ -14,7 +14,7 @@ export interface Income {
   providedIn: 'root'
 })
 export class IncomeService {
-  private baseUrl = 'http://localhost:8080/incomes';
+  private baseUrl = 'http://http://52.66.200.200:8081/incomes';
 
   constructor(private http: HttpClient) {}
 
