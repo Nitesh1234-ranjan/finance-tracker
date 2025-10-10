@@ -15,7 +15,7 @@ export interface Expense {
   providedIn: 'root'
 })
 export class ExpenseService {
-  private baseUrl = 'http://localhost:8080/expenses';
+  private baseUrl = 'http://52.66.200.200:8081/expenses';
 
   constructor(private http: HttpClient) {}
 
